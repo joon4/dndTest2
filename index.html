@@ -67,9 +67,7 @@
 <body>
 
     <!-- 시작시 기본 날짜 설정은 value를 이용 -->
-    <div class="d" style="position:relative;">
-        <input type="text" id="datePicker" class="form-control" value="2019-06-27">
-    </div>
+    
 
 
                         <div class="container">
@@ -396,23 +394,26 @@
                         }else if(parent.className.indexOf('startTime')!== -1){
                             
                             var childList = parent.childNodes;
-                            
+
+
+
+
                             var html = '';
                             html += '<table class="propertyTable" id="propertyTable">';
                             html += '<tbody style="border:3px solid;margin-bottom:10px;">';
                             html += '<tr>';
                             html += '<td>startTime</td>';
-                            html += '<td style="position:relative;"><input type="text" id="startTime" class="form-control"></input></td></tr>';
+                            html += '<td style="position:relative;"><div style="position:relative;" data-date-format="yyyy-mm-dd hh:mm:ss"><input type="text" id="startTime" class="form-control" value="2019-06-27"></input></div></td></tr>';
                             html += '<tr><td colspan=2 align=center><button style="width:100px;height:40px;margin-top:10px;margin-bottom:10px; " name="modifyButton" id="modifyButton">수정</button></td></tr>';
                             html += '</tbody>';
                             html += '</table>';
 
-                            $('#startTime').datetimepicker();
+                            
                             
                             document.getElementById("property").innerHTML=html;
 
                             $('#startTime')[0].value = childList[1].textContent;
-
+                            $('#startTime').datetimepicker();
                             $('#modifyButton').on('click',function(){
                                 childList[1].textContent = $('#startTime')[0].value;
                             });
