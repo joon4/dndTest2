@@ -1,0 +1,586 @@
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- datepicker 는 jquery 1.7.1 이상 bootstrap 2.0.4 이상 버전이 필요함 -->
+<!-- jQuery가 먼저 로드 된 후 datepicker가 로드 되어야함.-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<link rel="stylesheet" href="bootstrap-datetimepicker.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<script src="moment.js"></script>
+<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+<script src="bootstrap-datetimepicker.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400" rel="stylesheet">
+        
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="unapp/css/animate.css">
+        <!-- Icomoon Icon Fonts-->
+        <link rel="stylesheet" href="unapp/css/icomoon.css">
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="unapp/css/bootstrap.css">
+    
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="unapp/css/magnific-popup.css">
+    
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="unapp/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="unapp/css/owl.theme.default.min.css">
+    
+        <!-- Theme style  -->
+        <link rel="stylesheet" href="unapp/css/style.css">
+    
+        <!-- Modernizr JS -->
+        <script src="unapp/js/modernizr-2.6.2.min.js"></script>
+
+
+        <meta charset="utf-8">
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <title>드래그앤드롭 테스트</title>
+
+                <style>
+                    mytable{
+                        border:2px solid;
+
+                    }
+
+                    sortableTable{
+                        border:3px solid;
+                    }
+
+                    mytr{
+                        border:20px solid #000000;
+                    }
+                </style>
+
+                    
+                    
+                    </head>
+<body>
+
+    <!-- 시작시 기본 날짜 설정은 value를 이용 -->
+    <div class="d" style="position:relative;">
+        <input type="text" id="datePicker" class="form-control" value="2019-06-27">
+    </div>
+
+
+                        <div class="container">
+                            <div class="tableContainer" id="tableContainer" style="height:100%; width:50%; float:left;">
+
+                                <main role="main" class="container" id="mainContainer"></main>
+
+                        <!-- /.container -->
+                        </div>
+
+                        <div class="propertyContainer" id="propertyContainer" style="height:100%; width:50%; float:left;">
+                            <div class="property" id="property">
+                                <table class="propertyTable" id="propertyTable">
+                                    <tbody style="border:3px solid;">
+                                        <tr>
+                                            <td>배너명</td>
+                                            <td><input type="text" id="name"></input></td>
+                                        </tr>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td><input type="text" id="id"></input></td>
+                                    
+                                        </tr>
+                                        <tr>
+                                            <td>status</td>
+                                            <td><input type="text" id="status"></input></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                        <!-- Bootstrap & Core Scripts -->
+
+                        
+
+
+
+                        
+
+                        <script type="text/javascript">
+                            //   $('tbody').sortable();
+                        </script>
+
+
+                    </body>
+
+                    <script>
+	
+                        $('#datePicker').datetimepicker();
+                    //ready end
+                </script>
+                </html>
+
+                <script type="text/javascript">
+
+                    var jsonData = {
+                        "AOS": [
+                            {
+                                "startTime": "2020-05-05 00:00:00",
+                                "endTime": "2020-05-14 00:00:00",
+                                "slotSequence": [
+                                    [
+                                        "System", 0, "play"
+                                    ],
+                                    [
+                                        "Half", 0, "play"
+                                    ],
+                                    [
+                                        "Pass", 0, "play"
+                                    ],
+                                    [
+                                        "Slot02", 106, "play"
+                                    ],
+                                    [
+                                        "Slot01", 103, "play"
+                                    ],
+                                    [
+                                        "Adeal", 0, "play"
+                                    ],
+                                    [
+                                        "FB", 0, "play"
+                                    ]
+                                ]
+                            }, {
+                                "startTime": "2020-05-14 00:00:01",
+                                "endTime": "2020-05-24 00:00:00",
+                                "slotSequence": [
+                                    [
+                                        "System", 0, "play"
+                                    ],
+                                    [
+                                        "Half", 0, "play"
+                                    ],
+                                    [
+                                        "Pass", 0, "play"
+                                    ],
+                                    [
+                                        "Slot02", 106, "play"
+                                    ],
+                                    [
+                                        "Slot01", 103, "play"
+                                    ],
+                                    [
+                                        "Slot03", 109, "coming"
+                                    ],
+                                    [
+                                        "Adeal", 0, "play"
+                                    ],
+                                    [
+                                        "FB", 0, "play"
+                                    ]
+                                ]
+                            }
+                        ],
+                        "IOS": [
+                            {
+                                "startTime": "2020-05-05 00:00:00",
+                                "endTime": "2020-05-14 00:00:00",
+                                "slotSequence": [
+                                    [
+                                        "System", 0, "play"
+                                    ],
+                                    [
+                                        "Half", 0, "play"
+                                    ],
+                                    [
+                                        "Pass", 0, "play"
+                                    ],
+                                    [
+                                        "Slot02", 106, "play"
+                                    ],
+                                    [
+                                        "Slot01", 103, "play"
+                                    ],
+                                    [
+                                        "Adeal", 0, "play"
+                                    ],
+                                    [
+                                        "FB", 0, "play"
+                                    ]
+                                ]
+                            }, {
+                                "startTime": "2020-05-14 00:00:01",
+                                "endTime": "2020-05-24 00:00:00",
+                                "slotSequence": [
+                                    [
+                                        "System", 0, "play"
+                                    ],
+                                    [
+                                        "Half", 0, "play"
+                                    ],
+                                    [
+                                        "Pass", 0, "play"
+                                    ],
+                                    [
+                                        "Slot02", 106, "play"
+                                    ],
+                                    [
+                                        "Slot01", 103, "play"
+                                    ],
+                                    [
+                                        "Slot03", 109, "coming"
+                                    ],
+                                    [
+                                        "Adeal", 0, "play"
+                                    ],
+                                    [
+                                        "FB", 0, "play"
+                                    ]
+                                ]
+                            }
+                        ],
+                        "WEB": [
+                            {
+                                "startTime": "2020-05-05 00:00:00",
+                                "endTime": "2020-05-14 00:00:00",
+                                "slotSequence": [
+                                    [
+                                        "Half", 0, "play"
+                                    ],
+                                    [
+                                        "Slot02", 106, "play"
+                                    ],
+                                    [
+                                        "Slot01", 103, "play"
+                                    ],
+                                    [
+                                        "Pass", 0, "play"
+                                    ],
+                                    [
+                                        "Mobile", 0, "play"
+                                    ]
+                                ]
+                            }, {
+                                "startTime": "2020-05-14 00:00:01",
+                                "endTime": "2020-05-24 00:00:00",
+                                "slotSequence": [
+                                    [
+                                        "Half", 0, "play"
+                                    ],
+                                    [
+                                        "Slot02", 106, "play"
+                                    ],
+                                    [
+                                        "Slot01", 103, "play"
+                                    ],
+                                    [
+                                        "Pass", 0, "play"
+                                    ],
+                                    [
+                                        "Slot03", 109, "coming"
+                                    ],
+                                    [
+                                        "Mobile", 0, "play"
+                                    ]
+                                ]
+                            }
+                        ]
+                    };
+
+                    function processJson(json) {
+                        var allTable = '';
+
+                        allTable += '<table class=mytable>';
+                        allTable += '<tbody class=sortableTable>';
+
+                        for (var key in json) {
+                            allTable+='<tr class=osOrder mytr style="border:4px solid ;border-color:#00FF00;"><td>';
+                            var tableData = createTable(key, json[key]);
+                            allTable += tableData;
+                            allTable+='</td></tr>';
+
+                        }
+
+                        allTable += '</tbody>';
+                        allTable += '</table>';
+
+                        return allTable;
+                    }
+
+                    function createTable(os, data) {
+                        var html = "";
+
+
+                        
+                        html += os + '의 banner Config<br>';
+
+                        html += '<table class=sortableTable>';
+                        html += '<tbody class=sortableTable>';
+
+
+                        for (var i = 0; i < data.length; i++) {
+                            var configData = data[i];
+                            html += '<tr class=configOrder mytr style="border:3px solid"><td>';
+
+
+                            html += i + '번째 config<br>';
+                            html += '<div class="startTime"><table class=mytable><tbody><tr class="startTime"><td>startTime = </td><td>' + configData['startTime'] + '</td></tr></tbody></table></div><br>';
+                            html += '<div class="endTime"><table class=mytable><tbody><tr class="endTime"><td>endTime = </td><td>' + configData['endTime'] + '</td></tr></tbody></table></div><br>';
+
+                            html += 'slotSequence<br>';
+
+                            html += '<table class="table table-hover sortableTable"> <thead class="thead-dark"> <tr><th>배너명</th><th>ID</th><th>status</th></tr></thead>'
+                            html += '<tbody class="sortableTable ui-sortable" id="' + os + i + '">'
+
+                            for (var j = 0; j < configData['slotSequence'].length; j++) {
+                                var arr = configData['slotSequence'][j];
+
+                                html += '<tr class="slotSequence ui-sortable-handle" style>';
+
+                                for (var k = 0; k < arr.length; k++) {
+                                    html += '<td>';
+                                    html += arr[k];
+                                    html += '</td>';
+                                }
+
+                                html += '</tr>';
+
+                            }
+
+                            html += '</tbody>';
+                            html += '</table>';
+
+
+                            html += '</tr></td>';
+
+
+
+                        }
+                        
+                        html += '</tbody>';
+                        html += '</table>'
+
+                        return html;
+                    }
+
+                    function setSortable(json) {
+                        for (var key in json) {
+                            var lengthVal = json[key].length;
+                            for (var i = 0; i < lengthVal; i++) {
+                                // document.getElementById(key + i).className = 'ui-sortable';
+                            }
+                        }
+                    }
+                    document.getElementById("mainContainer").innerHTML = processJson(jsonData);
+
+                    $('.sortableTable').sortable();
+                    // setSortable(jsonData);
+                    var changeFunction;
+
+                    $(document).click(function (event) {
+                        var parent = event.target.parentNode;
+                        
+                        // console.log(parent.className);
+
+                        if(parent.className.indexOf('osOrder')!== -1){
+                            return;
+                        }else if(parent.className.indexOf('configOrder')!== -1){
+                            return;
+                        }else if(parent.className.indexOf('startTime')!== -1){
+                            
+                            var childList = parent.childNodes;
+                            
+                            var html = '';
+                            html += '<table class="propertyTable" id="propertyTable">';
+                            html += '<tbody style="border:3px solid;margin-bottom:10px;">';
+                            html += '<tr>';
+                            html += '<td>startTime</td>';
+                            html += '<td style="position:relative;"><input type="text" id="startTime" class="form-control"></input></td></tr>';
+                            html += '<tr><td colspan=2 align=center><button style="width:100px;height:40px;margin-top:10px;margin-bottom:10px; " name="modifyButton" id="modifyButton">수정</button></td></tr>';
+                            html += '</tbody>';
+                            html += '</table>';
+
+                            $('#startTime').datetimepicker();
+                            
+                            document.getElementById("property").innerHTML=html;
+
+                            $('#startTime')[0].value = childList[1].textContent;
+
+                            $('#modifyButton').on('click',function(){
+                                childList[1].textContent = $('#startTime')[0].value;
+                            });
+
+                            if(!!clickedNode){
+                                if(clickedNode.className.indexOf(' btn-warning') !== -1){
+                                    clickedNode.className = clickedNode.className.replace(' btn-warning','');
+                                }
+                            }
+
+                            clickedNode = parent;
+
+                            if(clickedNode.className.indexOf(' btn-warning') === -1){
+                                    clickedNode.className += ' btn-warning';
+                            }
+
+                        }else if(parent.className.indexOf('endTime')!== -1){
+                            var childList = parent.childNodes;
+                            
+                            var html = '';
+                            html += '<table class="propertyTable" id="propertyTable">';
+                            html += '<tbody style="border:3px solid;margin-bottom:10px;">';
+                            html += '<tr>';
+                            html += '<td>endTime</td>';
+                            html += '<td style="position:relative;"><input type="text" id="endTime" class="form-control"></input></td></tr>';
+                            html += '<tr><td colspan=2 align=center><button style="width:100px;height:40px;margin-top:10px;margin-bottom:10px; " name="modifyButton" id="modifyButton">수정</button></td></tr>';
+                            html += '</tbody>';
+                            html += '</table>';
+
+                            $('#endTime').datetimepicker();
+                            
+                            document.getElementById("property").innerHTML=html;
+
+                            $('#endTime')[0].value = childList[1].textContent;
+
+                            $('#modifyButton').on('click',function(){
+                                childList[1].textContent = $('#endTime')[0].value;
+                            });
+
+                            if(!!clickedNode){
+                                if(clickedNode.className.indexOf(' btn-warning') !== -1){
+                                    clickedNode.className = clickedNode.className.replace(' btn-warning','');
+                                }
+                            }
+
+                            clickedNode = parent;
+
+                            if(clickedNode.className.indexOf(' btn-warning') === -1){
+                                    clickedNode.className += ' btn-warning';
+                            }
+
+
+                        }else if(parent.className.indexOf('slotSequence')!== -1){
+                            var childList = parent.childNodes;
+                            
+                            var html = '';
+                            html += '<table class="propertyTable" id="propertyTable">';
+                            html += '<tbody style="border:3px solid;">';
+                            html += '<tr>';
+                            html += '<td>배너명</td>';
+                            html += '<td><input type="text" id="name" value='+childList[0].textContent+'></input></td>';
+                            html += '</tr>';
+                            html += '<tr>';
+                            html += '<td>ID</td>';
+                            html += '<td><input type="text" id="id" value='+childList[1].textContent+'></input></td>';
+                            html += '</tr>';
+                            html += '<tr>';
+                            html += '<td>status</td>';
+                            html += '<td><select name="status" id="status">';
+                            if(childList[2].textContent === 'coming'){
+                                html += '<option value="coming" selected>coming</option>';
+                            } else {
+                                html += '<option value="coming">coming</option>';
+                            }
+
+                            if(childList[2].textContent === 'play'){
+                                html += '<option value="play" selected>play</option>';
+                            } else {
+                                html += '<option value="play">play</option>';
+                            }
+                            html += '</select></td></tr>';
+
+                            html += '<tr><td colspan=2 align=center><button style="width:100px;height:40px;margin-top:10px;margin-bottom:10px; " name="modifyButton" id="modifyButton">수정</button></td></tr>';
+
+                            html += '</tbody>';
+                            html += '</table>';
+
+                            document.getElementById("property").innerHTML=html;
+
+                            $('#modifyButton').on('click',function(){
+                                childList[0].textContent = $('#name')[0].value;
+                                childList[1].textContent = $('#id')[0].value;
+                                childList[2].textContent = $('#status')[0].value;
+                            });
+
+                            if(!!clickedNode){
+                                if(clickedNode.className.indexOf(' btn-warning') !== -1){
+                                    clickedNode.className = clickedNode.className.replace(' btn-warning','');
+                                }
+                            }
+
+                            clickedNode = parent;
+
+                            if(clickedNode.className.indexOf(' btn-warning') === -1){
+                                    clickedNode.className += ' btn-warning';
+                            }
+                        }else {
+                            return;
+                        }
+                        
+                        // if(parent.childNodes.)
+                    });
+                    
+                    $(document).mouseout(function(event){
+                        var parent = event.target.parentNode;
+
+                        if(!parent.className) return;
+
+
+                        if(parent.className.indexOf('osOrder')!== -1){
+                            return;
+                        }else if(parent.className.indexOf('configOrder')!== -1){
+                            return;
+                        }else if(parent.className.indexOf('startTime')!== -1){
+                            
+                            if(parent.className.indexOf(' btn-primary')!==-1){
+                                parent.className = parent.className.replace(' btn-primary','');
+                            }
+
+                        }else if(parent.className.indexOf('endTime')!== -1){
+                            if(parent.className.indexOf(' btn-primary')!==-1){
+                                parent.className = parent.className.replace(' btn-primary','');
+                            }
+                        }else if(parent.className.indexOf('slotSequence')!== -1){
+                            if(parent.className.indexOf(' btn-primary')!==-1){
+                                parent.className = parent.className.replace(' btn-primary','');
+                            }
+                        }
+                    });
+
+                    $(document).mouseover(function(event){
+                        var parent = event.target.parentNode;
+
+                        if(!parent.className) return;
+
+                        if(parent.className.indexOf('osOrder')!== -1){
+                            return;
+                        }else if(parent.className.indexOf('configOrder')!== -1){
+                            return;
+                        }else if(parent.className.indexOf('startTime')!== -1){
+                            
+                            if(parent.className.indexOf(' btn-primary')===-1){
+                                parent.className += ' btn-primary';
+                            }
+
+                        }else if(parent.className.indexOf('endTime')!== -1){
+                            if(parent.className.indexOf(' btn-primary')===-1){
+                                parent.className += ' btn-primary';
+                            }
+                        }else if(parent.className.indexOf('slotSequence')!== -1){
+                            if(parent.className.indexOf(' btn-primary')===-1){
+                                parent.className += ' btn-primary';
+                            }
+                        }
+                       
+                    });
+
+                    var clickedNode = null;
+
+
+                </script>

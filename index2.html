@@ -1,0 +1,31 @@
+<!-- datepicker 는 jquery 1.7.1 이상 bootstrap 2.0.4 이상 버전이 필요함 -->
+<!-- jQuery가 먼저 로드 된 후 datepicker가 로드 되어야함.-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<link rel="stylesheet" href="bootstrap-datetimepicker.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<script src="moment.js"></script>
+<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+<script src="bootstrap-datetimepicker.js"></script>
+
+
+
+
+<!--한국어  달력 쓰려면 추가 로드-->
+<!-- <script src="resources/js/plugin/datepicker/bootstrap-datepicker.ko.min.js"></script> --> 
+<head>
+    <title>dd</title>
+</head>
+<body>
+	<!-- 시작시 기본 날짜 설정은 value를 이용 -->
+    <div class="d" style="position:relative;">
+        <input type="text" id="datePicker" class="form-control" value="2019-06-27">
+    </div>
+</body>
+
+<script>
+	
+		$('#datePicker').datetimepicker();
+	//ready end
+</script>
