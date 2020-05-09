@@ -1,8 +1,8 @@
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="unapp/js/jquery.min.js"></script>
 <!-- datepicker 는 jquery 1.7.1 이상 bootstrap 2.0.4 이상 버전이 필요함 -->
 <!-- jQuery가 먼저 로드 된 후 datepicker가 로드 되어야함.-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<link rel="stylesheet" href="bootstrap-4.1.1-dist/css/bootstrap.min.css" >
 <link rel="stylesheet" href="bootstrap-datetimepicker.css">
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -403,7 +403,7 @@
                             html += '<tbody style="border:3px solid;margin-bottom:10px;">';
                             html += '<tr>';
                             html += '<td>startTime</td>';
-                            html += '<td style="position:relative;"><div style="position:relative;" data-date-format="yyyy-mm-dd hh:mm:ss"><input type="text" id="startTime" class="form-control" value="2019-06-27"></input></div></td></tr>';
+                            html += '<td style="position:relative;"><div style="position:relative;"><input type="text" id="startTime" class="form-control" value="2019-06-27"></input></div></td></tr>';
                             html += '<tr><td colspan=2 align=center><button style="width:100px;height:40px;margin-top:10px;margin-bottom:10px; " name="modifyButton" id="modifyButton">수정</button></td></tr>';
                             html += '</tbody>';
                             html += '</table>';
@@ -413,7 +413,9 @@
                             document.getElementById("property").innerHTML=html;
 
                             $('#startTime')[0].value = childList[1].textContent;
-                            $('#startTime').datetimepicker();
+                            $('#startTime').datetimepicker({
+                                format: 'yyyy-MM-DD hh:mm:ss'
+                            });
                             $('#modifyButton').on('click',function(){
                                 childList[1].textContent = $('#startTime')[0].value;
                             });
