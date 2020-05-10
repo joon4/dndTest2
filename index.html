@@ -2,8 +2,9 @@
 <script src="unapp/js/jquery.min.js"></script>
 <!-- datepicker 는 jquery 1.7.1 이상 bootstrap 2.0.4 이상 버전이 필요함 -->
 <!-- jQuery가 먼저 로드 된 후 datepicker가 로드 되어야함.-->
-<link rel="stylesheet" href="bootstrap-4.1.1-dist/css/bootstrap.min.css" >
+<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css" >
 <link rel="stylesheet" href="bootstrap-datetimepicker.css">
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
@@ -62,12 +63,9 @@
                 </style>
 
                     
-                    
+                    <script src="https://kit.fontawesome.com/f76905eca5.js" crossorigin="anonymous"></script>
                     </head>
 <body>
-
-    <!-- 시작시 기본 날짜 설정은 value를 이용 -->
-    
 
 
                         <div class="container">
@@ -78,23 +76,20 @@
                         <!-- /.container -->
                         </div>
 
-                        <div class="propertyContainer" id="propertyContainer" style="height:100%; width:50%; float:left;">
+                        <div class="propertyContainer" id="propertyContainer" style="height:100%; width:50%; float:left; margin-top:40px">
                             <div class="property" id="property">
                                 <table class="propertyTable" id="propertyTable">
                                     <tbody style="border:3px solid;">
+                                    <tr><td>******************************************</td></tr>
+                                    <tr><td>***&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;***</td></tr>
+
                                         <tr>
-                                            <td>배너명</td>
-                                            <td><input type="text" id="name"></input></td>
+                                            <td>***&nbsp; 수정하고 싶은 배너를 선택해주세요&nbsp;&nbsp;&nbsp;***</td>
                                         </tr>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td><input type="text" id="id"></input></td>
-                                    
-                                        </tr>
-                                        <tr>
-                                            <td>status</td>
-                                            <td><input type="text" id="status"></input></td>
-                                        </tr>
+                                    <tr><td>***&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;***</td></tr>
+
+                                    <tr><td>******************************************</td></tr>
+
                                     </tbody>
                                 </table>
                                 
@@ -120,7 +115,7 @@
 
                     <script>
 	
-                        $('#datePicker').datetimepicker();
+
                     //ready end
                 </script>
                 </html>
@@ -403,7 +398,12 @@
                             html += '<tbody style="border:3px solid;margin-bottom:10px;">';
                             html += '<tr>';
                             html += '<td>startTime</td>';
-                            html += '<td style="position:relative;"><div style="position:relative;"><input type="text" id="startTime" class="form-control" value="2019-06-27"></input></div></td></tr>';
+                            html += '<td style="position:relative;">';
+                            html += '<div style="position:relative;">';
+                            
+                            html += '<input type="text" id="startTime" class="form-control" value="2019-06-27"></input></div></td></tr>';
+
+
                             html += '<tr><td colspan=2 align=center><button style="width:100px;height:40px;margin-top:10px;margin-bottom:10px; " name="modifyButton" id="modifyButton">수정</button></td></tr>';
                             html += '</tbody>';
                             html += '</table>';
@@ -414,7 +414,18 @@
 
                             $('#startTime')[0].value = childList[1].textContent;
                             $('#startTime').datetimepicker({
-                                format: 'yyyy-MM-DD hh:mm:ss'
+                                format: 'YYYY-MM-DD HH:mm:ss',
+
+                            icons: {
+                                time: "fa fa-clock-o",
+                                date: "fa fa-calendar",
+                                up: "fa fa-arrow-up",
+                                down: "fa fa-arrow-down",
+                                previous: "fa fa-chevron-left",
+                                next: "fa fa-chevron-right",
+                                today: "fa fa-clock-o",
+                                clear: "fa fa-trash-o"
+                            }
                             });
                             $('#modifyButton').on('click',function(){
                                 childList[1].textContent = $('#startTime')[0].value;
@@ -445,11 +456,25 @@
                             html += '</tbody>';
                             html += '</table>';
 
-                            $('#endTime').datetimepicker();
+                            
                             
                             document.getElementById("property").innerHTML=html;
 
                             $('#endTime')[0].value = childList[1].textContent;
+                            $('#endTime').datetimepicker({
+                                format: 'YYYY-MM-DD HH:mm:ss',
+
+                            icons: {
+                                time: "fa fa-clock-o",
+                                date: "fa fa-calendar",
+                                up: "fa fa-arrow-up",
+                                down: "fa fa-arrow-down",
+                                previous: "fa fa-chevron-left",
+                                next: "fa fa-chevron-right",
+                                today: "fa fa-clock-o",
+                                clear: "fa fa-trash-o"
+                            }
+                            });
 
                             $('#modifyButton').on('click',function(){
                                 childList[1].textContent = $('#endTime')[0].value;
