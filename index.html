@@ -76,7 +76,10 @@
                         <!-- /.container -->
                         </div>
 
+                    
+
                         <div class="propertyContainer" id="propertyContainer" style="height:100%; width:50%; float:left; margin-top:40px">
+
                             <div class="property" id="property">
                                 <table class="propertyTable" id="propertyTable">
                                     <tbody style="border:3px solid;">
@@ -94,6 +97,22 @@
                                 </table>
                                 
                                 
+                            </div>
+
+                            <div class="jsonBox" id="jsonBox" style="margin-top:40px">
+                                <table class="jsonTable" id="jsonTable">
+                                    <tbody style="border:3px solid;">
+                                        <tr><td>
+                                        
+                                        <div class="jsonContent" id="jsonContent"></div>
+                                        
+                                        </td></tr>
+
+
+                                    </tbody>
+                                
+                                </table>
+                            
                             </div>
                         </div>
                     </div>
@@ -286,11 +305,25 @@
                             }
                         ]
                     };
+                    
+                    function setJsonContent(data){
+                        document.getElementById('jsonContent').innerHTML = JSON.stringify(data);
+
+                    }
+
+                    function parseObject(obj){
+                        console.log(obj);
+                        for(var key in obj.dataset){
+                            console.log(key);
+                        }
+                    }
+                    
+                    //parseObject($())
 
                     function processJson(json) {
                         var allTable = '';
 
-                        allTable += '<table class=mytable>';
+                        allTable += '<table class=mytable id=mainTable>';
                         allTable += '<tbody class=sortableTable>';
 
                         for (var key in json) {
@@ -372,7 +405,7 @@
                         }
                     }
                     document.getElementById("mainContainer").innerHTML = processJson(jsonData);
-
+                    setJsonContent(jsonData);
                     $('.sortableTable').sortable();
                     // setSortable(jsonData);
                     var changeFunction;
@@ -610,5 +643,5 @@
 
                     var clickedNode = null;
 
-
+parseObject($('#mainTable'));
                 </script>
