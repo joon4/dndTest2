@@ -48,17 +48,16 @@
                 <title>드래그앤드롭 테스트</title>
 
                 <style>
-                    mytable{
-                        border:2px solid;
-
+                    #sortable { 
+                        list-style-type: none;
+                        margin: 20px;
+                        padding: 0;
                     }
 
-                    sortableTable{
-                        border:3px solid;
-                    }
-
-                    mytr{
-                        border:20px solid #000000;
+                    #sortable li {
+                        border: 1px solid #ddd;
+                        padding: 20px;
+                        margin-bottom: -1px;
                     }
                 </style>
 
@@ -67,27 +66,25 @@
                     </head>
 <body>
 
+                        <div class="container" style="margin-left:10px; margin-top:40px;float:left; height:100%; width:60%;  overflow-y:auto;">
 
-                        <div class="container">
-                            <div class="tableContainer" id="tableContainer" style="height:100%; width:50%; float:left;">
-
-                                <main role="main" class="container" id="mainContainer"></main>
+                                <div class="container" id="mainContainer"></div>
 
                         <!-- /.container -->
                         </div>
 
                     
 
-                        <div class="propertyContainer" id="propertyContainer" style="height:100%; width:50%; float:left; margin-top:40px">
+                        <div class="propertyContainer" id="propertyContainer" style="height:100%; width:30%;  margin-top:40px;margin-left:-20px;float:left;  overflow-y:visible;">
 
-                            <div class="property" id="property">
+                            <div class="property" id="property" align="center">
                                 <table class="propertyTable" id="propertyTable">
-                                    <tbody style="border:3px solid;">
+                                    <tbody style="border:3px solid #808080;">
                                     <tr><td>******************************************</td></tr>
                                     <tr><td>***&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;***</td></tr>
 
                                         <tr>
-                                            <td>***&nbsp; 수정하고 싶은 배너를 선택해주세요&nbsp;&nbsp;&nbsp;***</td>
+                                            <td>***&emsp; 수정하고 싶은 배너를 선택해주세요&emsp;&nbsp;&nbsp;&nbsp;&nbsp;***</td>
                                         </tr>
                                     <tr><td>***&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;***</td></tr>
 
@@ -99,13 +96,13 @@
                                 
                             </div>
 
-                            <div class="jsonBox" id="jsonBox" style="margin-top:40px">
-                                <table class="jsonTable" id="jsonTable">
-                                    <tbody style="border:3px solid;">
+                            <div class="jsonBox" id="jsonBox" style="margin-top:20px ; overflow-y:hidden;" align="center">
+                                <table class="jsonTable" id="jsonTable" width=324 height=70>
+                                    <tbody style="border:3px solid #808080;">
                                         <tr><td>
-                                        
-                                        <div class="jsonContent" id="jsonContent"></div>
-                                        
+                                        <font size=1>
+                                        <div class="jsonContent" id="jsonContent" style="margin-top:10px; margin-left:7px; overflow-y:auto; height:750px;"></div>
+                                        </font>
                                         </td></tr>
 
 
@@ -114,8 +111,13 @@
                                 </table>
                             
                             </div>
+                        
+                        
                         </div>
                     </div>
+
+                    
+                                
 
                         <!-- Bootstrap & Core Scripts -->
 
@@ -140,7 +142,7 @@
                 </html>
 
                 <script type="text/javascript">
-
+                    var lastChanged = [];
                     var jsonData = {
                         "AOS": [
                             {
@@ -305,36 +307,153 @@
                             }
                         ]
                     };
-                    
+
+                    function getInitialTable(){
+                        var str = '';
+                        str += '<table class="propertyTable" id="propertyTable">'
+                        str += '      <tbody style="border:3px solid #808080;">'
+                        str += '      <tr><td>******************************************</td></tr>'
+                        str += '      <tr><td>***&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;***</td></tr>'
+
+                        str += '          <tr>'
+                        str += '              <td>***&emsp; 수정하고 싶은 배너를 선택해주세요&emsp;&nbsp;&nbsp;&nbsp;&nbsp;***</td>'
+                        str += '          </tr>'
+                        str += '      <tr><td>***&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;***</td></tr>'
+
+                        str += '      <tr><td>******************************************</td></tr>'
+
+                        str += '      </tbody>'
+                        str += '  </table>'
+
+                        return str;
+                    }
+                    function findDiff(str1, str2){ 
+                            let diff= "";
+                            str2.split('').forEach(function(val, i){
+                                if (val != str1.charAt(i))
+                                diff += val ;         
+                            });
+                            return diff;
+                        }
                     function setJsonContent(data){
-                        document.getElementById('jsonContent').innerHTML = JSON.stringify(data);
+
+                        var str = JSON.stringify(data, null, 4)
+                            .replace(/\n( *)/g, function (match, p1) {
+                                return '<br>' + '&nbsp;'.repeat(p1.length);
+                            });
+                        document.getElementById('jsonContent').innerHTML = str;
 
                     }
 
                     function parseObject(obj){
-                        console.log(obj);
-                        for(var key in obj.dataset){
-                            console.log(key);
+                        // for(var key of obj){
+
+                        //     var outerHTML = getOuterHTML(key);
+
+                        //     var className = key.className;
+
+                        //     var type = getTypeOfElement(outerHTML);
+
+                        //     var content = key.innerHTML;
+
+                        //     if(type === 'table'){
+                        //         return '{'+parseObject+'}';
+                        //     } else if(type === 'tr'){
+
+                        //     } else if(type === 'td'){
+
+                        //     }
+                        // }
+
+
+                    }
+
+                    function parseHTML(){
+                        var jsonObj = {};
+
+                        var osLength = $('#mainTable > tbody > tr > td').length;
+
+                        for ( var i =0; i< osLength; i++){ //os iterator
+                            var configLength = $('#mainTable > tbody > tr > td:nth-child('+(i+1)+') > table > tbody > tr').length;
+
+                            var configJsonList = [];
+                            for ( var j = 0; j<configLength; j++){ //config iterator
+                                var startTime = $('#mainTable > tbody > tr > td:nth-child('+(i+1)+') > table > tbody > tr:nth-child('+(j+1)+') > td > div.startTime > table > tbody > tr > td:nth-child(2)')[0].innerHTML;
+
+                                var endTime = $('#mainTable > tbody > tr > td:nth-child('+(i+1)+') > table > tbody > tr:nth-child('+(j+1)+') > td > div.endTime > table > tbody > tr > td:nth-child(2)')[0].innerHTML;
+
+                                var slotSequence = [];
+
+                                var bannerLength = $('#mainTable > tbody > tr > td:nth-child('+(i+1)+') > table > tbody > tr:nth-child('+(j+1)+') > td > table > tbody > tr').length;
+                                for ( var k = 0; k<bannerLength;k++){ // banner iterator
+                                    var bannerContent = [];
+
+                                    for( var m = 0; m<3;m++){
+                                        if(m === 1){
+                                            bannerContent.push( parseInt($('#mainTable > tbody > tr > td:nth-child('+(i+1)+') > table > tbody > tr:nth-child('+(j+1)+') > td > table > tbody > tr:nth-child('+(k+1)+') > td:nth-child('+(m+1)+')')[0].innerHTML) );
+                                            
+                                        } else {
+                                            bannerContent.push( $('#mainTable > tbody > tr > td:nth-child('+(i+1)+') > table > tbody > tr:nth-child('+(j+1)+') > td > table > tbody > tr:nth-child('+(k+1)+') > td:nth-child('+(m+1)+')')[0].innerHTML );
+
+                                        }
+                                    }
+
+                                    slotSequence.push(bannerContent);
+                                }
+
+                                var json = {"startTime":startTime,
+                                            "endTime":endTime,
+                                            "slotSequence":slotSequence };
+
+                                configJsonList.push(json);
+
+                            }
+
+                            if(i === 0){
+                                jsonObj["AOS"] = configJsonList;
+                            } else if(i === 1){
+                                jsonObj["IOS"] = configJsonList;
+                            } else if(i === 2){
+                                jsonObj["WEB"] = configJsonList;
+                            }
+
                         }
+                        
+
+                        return jsonObj;
                     }
                     
+                    function getOuterHTML(obj){
+                        return obj.outerHTML.replace(obj.innerHTML,'')
+                    }
+                    
+                    function getTypeOfElement(obj){
+                        if(obj.indexOf('<table') !== -1 ){
+                            return 'table';
+                        } else if(obj.indexOf('<tr') !== -1 ){
+                            return 'tr';
+                        } else if(obj.indexOf('<td') !== -1 ){
+                            return 'td';
+                        } else {
+                            return 'else';
+                        }
+                    }
                     //parseObject($())
 
                     function processJson(json) {
                         var allTable = '';
 
                         allTable += '<table class=mytable id=mainTable>';
-                        allTable += '<tbody class=sortableTable>';
+                        allTable += '<tbody><tr>';
 
                         for (var key in json) {
-                            allTable+='<tr class=osOrder mytr style="border:4px solid ;border-color:#00FF00;"><td>';
+                            allTable+='<td style="border: 3px solid #00ff00; padding:15px; vertical-align:top;">';
                             var tableData = createTable(key, json[key]);
                             allTable += tableData;
-                            allTable+='</td></tr>';
-
+                            allTable+='</td>';
                         }
 
-                        allTable += '</tbody>';
+                        allTable += '</tr></tbody>';
                         allTable += '</table>';
 
                         return allTable;
@@ -345,7 +464,7 @@
 
 
                         
-                        html += os + '의 banner Config<br>';
+                        html += '<div class="osName" id="osName">'+os + '의 banner Config</div><br>';
 
                         html += '<table class=sortableTable>';
                         html += '<tbody class=sortableTable>';
@@ -353,17 +472,17 @@
 
                         for (var i = 0; i < data.length; i++) {
                             var configData = data[i];
-                            html += '<tr class=configOrder mytr style="border:3px solid"><td>';
+                            html += '<tr class=configOrder style="border:3px solid #808080 "><td>';
 
 
-                            html += i + '번째 config<br>';
+                            html += '<div class="bannerConfigOrder" id="bannerConfigOrder">'+i + '번째 config</div><br>';
                             html += '<div class="startTime"><table class=mytable><tbody><tr class="startTime"><td>startTime = </td><td>' + configData['startTime'] + '</td></tr></tbody></table></div><br>';
                             html += '<div class="endTime"><table class=mytable><tbody><tr class="endTime"><td>endTime = </td><td>' + configData['endTime'] + '</td></tr></tbody></table></div><br>';
 
                             html += 'slotSequence<br>';
 
                             html += '<table class="table table-hover sortableTable"> <thead class="thead-dark"> <tr><th>배너명</th><th>ID</th><th>status</th></tr></thead>'
-                            html += '<tbody class="sortableTable ui-sortable" id="' + os + i + '">'
+                            html += '<tbody class="sortableTable ui-sortable" id="'+os+'">';
 
                             for (var j = 0; j < configData['slotSequence'].length; j++) {
                                 var arr = configData['slotSequence'][j];
@@ -405,20 +524,131 @@
                         }
                     }
                     document.getElementById("mainContainer").innerHTML = processJson(jsonData);
-                    setJsonContent(jsonData);
-                    $('.sortableTable').sortable();
+                    
+                    $('.sortableTable').sortable({
+                        start: function(event, ui) {
+                            var start_pos = ui.item.index();
+                            ui.item.data('start_pos', start_pos);
+                        },
+                        change: function(event, ui) {
+                            var start_pos = ui.item.data('start_pos');
+                            var index = ui.placeholder.index();
+                            ui.item.data('end_pos',index);
+                            
+                        },
+                        update: function(event, ui) {
+                            var parent = event.target.parentNode;
+
+                            var parent_1 = parent.parentNode.parentNode;
+                            var parent_2 = parent.parentNode.parentNode.parentNode;
+
+                            var parent_3 = parent_2.parentNode;
+                            var parent_4 = parent_3.parentNode;
+
+                            var parent_5 = parent_4.parentNode;                            
+
+                            var index2 = Array.prototype.indexOf.call(parent_2.childNodes, parent_1);
+
+                            var index1 = Array.prototype.indexOf.call(parent_5.childNodes, parent_4);
+                            lastChanged = [index1, index2, ui.item.data('start_pos'), ui.item.data('end_pos')];
+                        }
+                    });
                     // setSortable(jsonData);
                     var changeFunction;
 
+
+                    $(document).mouseup(function(e){
+                        setTimeout(function(){
+                            setJsonContent(parseHTML());
+                        },10);
+                    });
                     $(document).click(function (event) {
                         var parent = event.target.parentNode;
-                        
-                        // console.log(parent.className);
 
                         if(parent.className.indexOf('osOrder')!== -1){
                             return;
                         }else if(parent.className.indexOf('configOrder')!== -1){
-                            return;
+                            var html = '';
+                            var selectedOS = parent.parentNode.parentNode.parentNode.querySelector('#osName').innerHTML;
+                            var selectedOrder = parent.querySelector('#bannerConfigOrder').innerHTML;
+
+
+                            html += '<table class="propertyTable" id="propertyTable" width=324>';
+                            html += '<tbody style="border:3px solid #808080;">';
+                            html += '<tr>';
+                            html += '<td align=center>config 설정</td></tr>';
+                            
+                            // html += '<tr><td align=center>선택된 config</td></tr>';
+                            html += '<tr><td align=center>'+selectedOS+'</td></tr>';
+                            html += '<tr><td align=center>'+selectedOrder+'</td></tr>';
+                            
+                            html += '<tr><td align=center>';
+                            // html += '<td><input type="text" id="name" value='+childList[0].textContent+'></input></td>';
+                            html += '<tr><td colspan=1 align=center><button style="width:80px;height:40px;margin-left:10px;margin-bottom:12px;margin-top:12px;" name="addButton" id="addButton">복제</button>';
+                            html += '<button style="width:80px;height:40px;margin-left:30px;margin-right:10px " name="deleteButton" id="deleteButton">제거</button></td></tr>';
+
+
+
+                            html += '</tbody>';
+                            html += '</table>';
+
+                            document.getElementById("property").innerHTML=html;
+
+                            if(!!clickedNode){
+                                if(clickedNode.className.indexOf(' btn-warning') !== -1){
+                                    clickedNode.className = clickedNode.className.replace(' btn-warning','');
+                                }
+                            }
+
+                            clickedNode = parent;
+
+                            if(clickedNode.className.indexOf(' btn-warning') === -1){
+                                    clickedNode.className += ' btn-warning';
+                            }
+
+
+                            $('#addButton').on('click',function(){
+                                if(!!clickedNode && !!clickedNode.parentNode){
+                                    var clonedNode = clickedNode.cloneNode(true);
+
+                                    if(clonedNode.className.indexOf(' btn-warning') !== -1){
+                                        clonedNode.className = clonedNode.className.replace(' btn-warning','');
+                                    }
+
+                                    // clonedNode.childNodes[0].textContent = $('#name')[0].value;
+                                    // clonedNode.childNodes[1].textContent = $('#id')[0].value;
+                                    // clonedNode.childNodes[2].textContent = $('#status')[0].value;
+                                    var idx = Array.prototype.indexOf.call(clickedNode.parentNode.childNodes,clickedNode);
+
+                                    clickedNode.parentNode.insertBefore(clonedNode, clickedNode.parentNode.childNodes[idx+1]);
+                                    
+                                    
+
+                                    if(!!clickedNode){
+                                        if(clickedNode.className.indexOf(' btn-warning') !== -1){
+                                            clickedNode.className = clickedNode.className.replace(' btn-warning','');
+                                        }
+                                    }
+
+                                    clickedNode = clonedNode;
+
+                                    if(clickedNode.className.indexOf(' btn-warning') === -1){
+                                        clickedNode.className += ' btn-warning';
+                                    }
+                                }
+
+                            });
+
+                            $('#deleteButton').on('click',function(){
+                                if(!!clickedNode && !!clickedNode.parentNode){
+                                    clickedNode.parentNode.removeChild(clickedNode);
+                                }
+
+                                document.getElementById("property").innerHTML=getInitialTable();
+                            });
+
+
+
                         }else if(parent.className.indexOf('startTime')!== -1){
                             
                             var childList = parent.childNodes;
@@ -428,7 +658,7 @@
 
                             var html = '';
                             html += '<table class="propertyTable" id="propertyTable">';
-                            html += '<tbody style="border:3px solid;margin-bottom:10px;">';
+                            html += '<tbody style="border:3px solid #808080;margin-bottom:10px;">';
                             html += '<tr>';
                             html += '<td>startTime</td>';
                             html += '<td style="position:relative;">';
@@ -481,7 +711,7 @@
                             
                             var html = '';
                             html += '<table class="propertyTable" id="propertyTable">';
-                            html += '<tbody style="border:3px solid;margin-bottom:10px;">';
+                            html += '<tbody style="border:3px solid #808080;margin-bottom:10px;">';
                             html += '<tr>';
                             html += '<td>endTime</td>';
                             html += '<td style="position:relative;"><input type="text" id="endTime" class="form-control"></input></td></tr>';
@@ -531,7 +761,7 @@
                             
                             var html = '';
                             html += '<table class="propertyTable" id="propertyTable">';
-                            html += '<tbody style="border:3px solid;">';
+                            html += '<tbody style="border:3px solid #808080;">';
                             html += '<tr>';
                             html += '<td>배너명</td>';
                             html += '<td><input type="text" id="name" value='+childList[0].textContent+'></input></td>';
@@ -556,17 +786,59 @@
                             }
                             html += '</select></td></tr>';
 
-                            html += '<tr><td colspan=2 align=center><button style="width:100px;height:40px;margin-top:10px;margin-bottom:10px; " name="modifyButton" id="modifyButton">수정</button></td></tr>';
+                            html += '<tr><td colspan=2 align=center><button style="width:80px;height:40px;margin-left:10px;margin-bottom:12px;margin-top:12px;" name="addButton" id="addButton">추가</button>';
+                            html += '<button style="width:80px;height:40px;margin-left:30px; " name="modifyButton" id="modifyButton">수정</button>';
+                            html += '<button style="width:80px;height:40px;margin-left:30px;margin-right:10px; " name="deleteButton" id="deleteButton">제거</button></td></tr>';
 
                             html += '</tbody>';
                             html += '</table>';
 
                             document.getElementById("property").innerHTML=html;
 
+                            $('#addButton').on('click',function(){
+                                if(!!clickedNode && !!clickedNode.parentNode){
+                                    var clonedNode = clickedNode.cloneNode(true);
+
+                                    if(clonedNode.className.indexOf(' btn-warning') !== -1){
+                                        clonedNode.className = clonedNode.className.replace(' btn-warning','');
+                                    }
+
+                                    clonedNode.childNodes[0].textContent = $('#name')[0].value;
+                                    clonedNode.childNodes[1].textContent = $('#id')[0].value;
+                                    clonedNode.childNodes[2].textContent = $('#status')[0].value;
+                                    var idx = Array.prototype.indexOf.call(clickedNode.parentNode.childNodes,clickedNode);
+
+                                    clickedNode.parentNode.insertBefore(clonedNode, clickedNode.parentNode.childNodes[idx+1]);
+                                    
+                                    
+
+                                    if(!!clickedNode){
+                                        if(clickedNode.className.indexOf(' btn-warning') !== -1){
+                                            clickedNode.className = clickedNode.className.replace(' btn-warning','');
+                                        }
+                                    }
+
+                                    clickedNode = clonedNode;
+
+                                    if(clickedNode.className.indexOf(' btn-warning') === -1){
+                                        clickedNode.className += ' btn-warning';
+                                    }
+                                }
+
+                            });
+
                             $('#modifyButton').on('click',function(){
                                 childList[0].textContent = $('#name')[0].value;
                                 childList[1].textContent = $('#id')[0].value;
                                 childList[2].textContent = $('#status')[0].value;
+                            });
+
+                            $('#deleteButton').on('click',function(){
+                                if(!!clickedNode && !!clickedNode.parentNode){
+                                    clickedNode.parentNode.removeChild(clickedNode);
+                                }
+
+                                document.getElementById("property").innerHTML=getInitialTable();
                             });
 
                             if(!!clickedNode){
@@ -584,19 +856,23 @@
                             return;
                         }
                         
+                        
+
+                        
                         // if(parent.childNodes.)
                     });
                     
                     $(document).mouseout(function(event){
                         var parent = event.target.parentNode;
-
                         if(!parent.className) return;
 
 
                         if(parent.className.indexOf('osOrder')!== -1){
                             return;
                         }else if(parent.className.indexOf('configOrder')!== -1){
-                            return;
+                            if(parent.className.indexOf(' btn-primary')!==-1){
+                                parent.className = parent.className.replace(' btn-primary','');
+                            }
                         }else if(parent.className.indexOf('startTime')!== -1){
                             
                             if(parent.className.indexOf(' btn-primary')!==-1){
@@ -616,13 +892,14 @@
 
                     $(document).mouseover(function(event){
                         var parent = event.target.parentNode;
-
                         if(!parent.className) return;
 
                         if(parent.className.indexOf('osOrder')!== -1){
                             return;
                         }else if(parent.className.indexOf('configOrder')!== -1){
-                            return;
+                            if(parent.className.indexOf(' btn-primary')===-1){
+                                parent.className += ' btn-primary';
+                            }
                         }else if(parent.className.indexOf('startTime')!== -1){
                             
                             if(parent.className.indexOf(' btn-primary')===-1){
@@ -643,5 +920,6 @@
 
                     var clickedNode = null;
 
-parseObject($('#mainTable'));
+                    setJsonContent(parseHTML());
+                    
                 </script>
