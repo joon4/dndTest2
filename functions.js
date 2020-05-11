@@ -590,3 +590,52 @@ $(document).mouseover(function(event){
     }
    
 });
+
+
+$('#saveTestServerButton').click(function(){
+    var con = confirm('정말로 테섭 DB에 저장하시겠습니까?');
+
+    if(con === true){
+        if(validationJsonData(jsonData)){
+            alert('검증 성공');
+        } else {
+            alert('검증 실패');
+        }
+    }
+});
+
+$('#loadTestServerButton').click(function(){
+    var con = confirm('정말로 테섭 DB를 불러오시겠습니까?');
+
+    if(con === true){
+        window.location.reload();
+    }
+});
+
+$('#saveLiveServerButton').click(function(){
+    var con = prompt('정말로 본섭 DB에 저장하시겠습니까?\n(실수 방지를 위해 "flysher"를 입력하고 확인을 눌러주세요)');
+
+    if(con === 'flysher'){
+        window.location.reload();
+    } else {
+        alert('확인 메세지가 잘못되었습니다.');
+    }
+});
+
+$('#loadLiveServerButton').click(function(){
+    var con = prompt('정말로 본섭 DB를 불러오시겠습니까?\n(실수 방지를 위해 "flysher"를 입력하고 확인을 눌러주세요)');
+
+    if(con === 'flysher'){
+        window.location.reload();
+    } else {
+        alert('확인 메세지가 잘못되었습니다.');
+    }
+});
+
+$('#refreshButton').click(function(){
+    var con = confirm('정말로 새로고침을 하시겠습니까?');
+
+    if(con === true){
+        window.location.reload();
+    }
+});
