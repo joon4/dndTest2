@@ -1,0 +1,144 @@
+<script src="unapp/js/jquery.min.js"></script>
+
+<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="library/bootstrap-datetimepicker.css">
+
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+
+        <script src="library/moment.js"></script>
+        <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+        <script src="library/bootstrap-datetimepicker.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+        <script src="https://kit.fontawesome.com/f76905eca5.js" crossorigin="anonymous"></script>
+        <!doctype html>
+        <html lang="en">
+            <head>
+
+                <link
+                    href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600"
+                    rel="stylesheet">
+                    <link
+                        href="https://fonts.googleapis.com/css?family=Nunito:200,300,400"
+                        rel="stylesheet">
+
+                        <!-- Animate.css -->
+                        <link rel="stylesheet" href="unapp/css/animate.css">
+                            <!-- Icomoon Icon Fonts-->
+                            <link rel="stylesheet" href="unapp/css/icomoon.css">
+                                <!-- Bootstrap -->
+                                <link rel="stylesheet" href="unapp/css/bootstrap.css">
+                                    <!-- Theme style -->
+                                    <link rel="stylesheet" href="unapp/css/style.css">
+
+                                        <!-- Modernizr JS -->
+                                        <!-- <script src="unapp/js/modernizr-2.6.2.min.js"></script> -->
+
+                                        <meta charset="utf-8">
+                                            <meta
+                                                name="viewport"
+                                                content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                                                <title>슬롯엔트리 테스트</title>
+                                            </head>
+                                            <body>
+
+                                                <div
+                                                    class="container"
+                                                    style="margin-left:10px; margin-top:40px;float:left; height:100%; width:60%;  overflow-y:auto;">
+                                                    <div class="container" id="mainContainer"></div>
+                                                    <!-- /.container -->
+                                                </div>
+
+                                                <div
+                                                    class="propertyContainer"
+                                                    id="propertyContainer"
+                                                    style="height:100%; width:30%;  margin-top:40px;margin-left:-20px;float:left;  overflow-y:visible;">
+                                                    <div class="property" id="property" align="center">
+                                                        <table class="propertyTable" id="propertyTable">
+                                                            <tbody style="border:3px solid #808080;">
+                                                                <tr>
+                                                                    <td>******************************************</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>***&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;***</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>***&emsp; 수정하고 싶은 배너를 선택해주세요&emsp;&nbsp;&nbsp;&nbsp;&nbsp;***</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>***&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;***</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>******************************************</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <div
+                                                        class="jsonBox"
+                                                        id="jsonBox"
+                                                        style="margin-top:20px ; overflow-y:hidden;"
+                                                        align="center">
+                                                        <table class="jsonTable" id="jsonTable" width="324" height="70">
+                                                            <tbody style="border:3px solid #808080;">
+                                                                <tr>
+                                                                    <td>
+                                                                        <font size="1">
+                                                                            <div
+                                                                                class="jsonContent"
+                                                                                id="jsonContent"
+                                                                                style="margin-top:10px; margin-left:7px; overflow-y:auto; height:750px;"></div>
+                                                                        </font>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div
+                                                    class="menuContainer"
+                                                    id="menuContainer"
+                                                    align="center"
+                                                    style="height:100%; width:10%; float:left; margin-left:-80px;margin-top:60px">
+                                                    <div id="button1">
+                                                        <button id="saveTestServerButton" style="width:150px;">테섭 DB 저장</button>
+                                                    </div>
+
+                                                    <div id="button2" style="margin-top:15px;">
+                                                        <button id="loadTestServerButton" style="width:150px;">테섭 DB 로드</button>
+                                                    </div>
+
+                                                    <div id="button3" style="margin-top:15px;">
+                                                        <button id="saveLiveServerButton" style="width:150px;">본섭 DB 저장</button>
+                                                    </div>
+
+                                                    <div id="button4" style="margin-top:15px;">
+                                                        <button id="loadLiveServerButton" style="width:150px;">본섭 DB 로드</button>
+                                                    </div>
+
+                                                    <div id="button5" style="margin-top:15px;">
+                                                        <button id="refreshButton" style="width:150px;">새로고침</button>
+                                                    </div>
+                                                </div>
+                                            </body>
+                                        </html>
+
+                                        <script type="text/javascript" src="functions.js"></script>
+
+                                        <script type="text/javascript">
+
+                                            var clickedNode = null;
+                                            var SLOT_INDEX = [14,94,35,111,110,112,104,99,109,106,101,87,93,103,79,105,100,40,98,83,91,96,85,57,70,12,11,73,18,17,23,97,88,82,86,64,24,84,75,15,95,90,68,67,16,69,61,56,77,72,52,44,47,62,58,26,59,55,46,4,50,45,28,66,43,9,8,54,42,41,29,13,30,22,10,6,25,39,20,36,19,21,5,2,7,48,3,34,31];
+
+
+                                            document
+                                                .getElementById("mainContainer")
+                                                .innerHTML = processJson(SLOT_INDEX);
+
+                                            setJsonContent(parseHTML());
+
+                                            $('.sortableTable').sortable({});
+                                        </script>
