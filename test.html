@@ -1,0 +1,80 @@
+<html>
+<body>
+    <table>
+        <tr>
+            <td>
+                <div id="img" style="background-image:url(http://rockncash2.akamaized.net/assets/image/PU_gameConAtlas.png); background-repeat:no-repeat;background-position:-800px -300px; width:79px; height:77px;"></div>
+            </td>
+            <td>
+                <div id="img" style="background-image:url(http://rockncash2.akamaized.net/assets/image/PU_gameConAtlas.png); background-repeat:no-repeat;background-position:-800px -300px; width:79px; height:77px;"></div>
+            </td>
+            <td>
+                <div id="img" style="background-image:url(http://rockncash2.akamaized.net/assets/image/PU_gameConAtlas.png); background-repeat:no-repeat;background-position:-800px -300px; width:79px; height:77px;"></div>
+            </td>
+            <td>
+                <div id="img" style="background-image:url(http://rockncash2.akamaized.net/assets/image/PU_gameConAtlas.png); background-repeat:no-repeat;background-position:-800px -300px; width:79px; height:77px;"></div>
+            </td>
+            <td>
+                <div id="img" style="background-image:url(http://rockncash2.akamaized.net/assets/image/PU_gameConAtlas.png); background-repeat:no-repeat;background-position:-800px -300px; width:79px; height:77px;"></div>
+            </td>
+
+            
+        </tr>
+    </table>
+</body>
+</html>
+
+
+<script>
+
+var xmlDoc;
+
+    function getIconMap(){
+        var returnMap = [];
+
+
+        
+
+        var x = new XMLHttpRequest();
+        x.open("GET", "http://rockncash2.akamaized.net/assets/image/PU_gameConAtlas.plist", true);
+
+        x.onreadystatechange = function () {
+        if (x.readyState == 4 && x.status == 200)
+        {
+            var parser = new DOMParser();
+
+            xmlDoc = parser.parseFromString(x.responseText, "text/xml");
+            
+            nodeList = xmlDoc.children[0].children[0].children[1];
+
+            var recentNum = -1;
+
+            for(var i = 0; i< nodeList.children.length; i++){
+                var child = nodeList.children[i];
+
+                if(i%2 === 0){
+                    var innerHTML = child.innerHTML;
+                    if(innerHTML.indexOf('miniSlotImg') === -1){
+                        i++;
+                        continue;
+                    }
+
+                    var num = parseInt(innerHTML.toString().split('miniSlotImg')[1].split('.png')[0]);
+                    recentNum = num;
+                } else {
+
+                    returnMap[recentNum] = child.children[1].innerHTML.split('},{')[0].replace(/{/gi,'').split(',');
+
+
+                }
+            }
+
+            console.log(returnMap);
+        }
+        };
+        x.send(null);
+    }
+
+getIconMap();
+
+</script>
